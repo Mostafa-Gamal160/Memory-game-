@@ -202,42 +202,55 @@ function storage() {
 
   let finalTime = `${usedMinutes}:${usedSeconds}`
   
-    // set the value of the name in the local storage
-    window.localStorage.setItem("name", personName.innerHTML);
-  window.localStorage.setItem("time", finalTime);
+  // get the old data from local storage 
+  let list = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+  // add the new data to the array 
+  list.push({
+    name: personName.innerHTML,
+    time: finalTime
+  })
+
+  // save the new data in the local storage 
+  localStorage.setItem('leaderboard', JSON.stringify(list))
 
   // call the load function
   loadStorage();
 }
 
 function loadStorage() {
-  // get the values from the local storage
-  let getName = window.localStorage.getItem("name");
-  let getScore = window.localStorage.getItem("time");
+  // empty the div 
+  leaders.innerHTML = "";
 
-  // if the storage was empty
-  if (!getName || !getScore) return;
+  // get the values from the local storage
+  let list = JSON.parse(localStorage.getItem("leaderboard"))
+
+  // if the list was empty 
+  if (!Array.isArray(list)) return;
 
   // make the leader board to appear
   leaderContainer.style.visibility = "visible";
   // create the element
-  let member = document.createElement("div");
-  let nameDiv = document.createElement("div");
-  let scoreDiv = document.createElement("div");
-
-  // add class to the element
-  nameDiv.classList.add("name");
-  scoreDiv.classList.add("score");
-  member.classList.add("member");
-
-  // create the text for the element
-  let nameText = document.createTextNode(getName);
-  let scoreText = document.createTextNode(getScore);
-
-  // append the text and the element
-  nameDiv.append(nameText);
-  scoreDiv.append(scoreText);
-  member.append(nameDiv);
-  member.append(scoreDiv);
-  leaders.append(member);
+  list.forEach((item) => {
+    
+    let member = document.createElement("div");
+    let nameDiv = document.createElement("div");
+    let scoreDiv = document.createElement("div");
+    
+    // add class to the element
+    nameDiv.classList.add("name");
+    scoreDiv.classList.add("score");
+    member.classList.add("member");
+    
+    // create the text for the element
+    let nameText = item.name;
+    let scoreText = `You finish in ${item.time}`;
+    
+    // append the text and the element
+    nameDiv.append(nameText);
+    scoreDiv.append(scoreText);
+    member.append(nameDiv);
+    member.append(scoreDiv);
+    leaders.append(member);
+  })
 }

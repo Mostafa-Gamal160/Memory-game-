@@ -146,6 +146,8 @@ body {
 .leader-board .member-info .member {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #2196f3;
 }
 /* end the score leaders  */
 
