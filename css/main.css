@@ -1,0 +1,198 @@
+/* start setting */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  text-transform: capitalize;
+}
+body {
+  font-family: Arial, Tahoma, sans-serif;
+}
+/* end setting */
+
+/* start control-buttons */
+.control-buttons {
+  /* visibility: hidden; */
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(3, 169, 244, 0.9);
+}
+.control-buttons span {
+  left: 50%;
+  top: 50%;
+  color: #fff;
+  background-color: #f44336;
+  padding: 15px 25px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 30px;
+  -o-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  border-radius: 6px;
+}
+/* end control-buttons  */
+
+/* start info container */
+.info-container {
+  width: 1080px;
+  margin: 20px auto 0;
+  background-color: #f6f6f6;
+  padding: 20px;
+  font-size: 22px;
+  border: 2px solid #2196f3;
+  display: flex;
+  justify-content: space-between;
+}
+/* end info container */
+
+/* start blocks container */
+.blocks-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  width: 1100px;
+  margin: 20px auto;
+}
+.blocks-container.no-clicking {
+  pointer-events: none;
+}
+.blocks-container .game-block {
+  height: 200px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+  flex: 1 0 200px;
+  margin: 0 10px 20px;
+  -o-transition: transform 0.5s;
+  -webkit-transition: transform 0.5s;
+  -moz-transition: transform 0.5s;
+  -ms-transition: transform 0.5s;
+  transition: transform 0.5s;
+}
+.blocks-container .game-block.is-flipped,
+.blocks-container .game-block.has-match {
+  -o-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+.blocks-container .game-block .face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 2px solid #2196f3;
+}
+.blocks-container .game-block .face::before {
+  content: "?";
+  color: #fff;
+  font-size: 140px;
+  font-weight: bold;
+}
+.blocks-container .game-block .front {
+  background-color: #333;
+  line-height: 200px;
+}
+.blocks-container .game-block .back {
+  position: relative;
+  background-color: #c2f0c2;
+  -o-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.blocks-container .game-block .back img {
+  position: absolute;
+  top: -1%;
+  left: 15%;
+  width: 140px;
+  height: 140px;
+  margin-top: 30px;
+}
+/* end blocks container */
+
+/* start the score leaders  */
+.leader-board {
+  visibility: hidden;
+  width: 1080px;
+  margin: 20px auto;
+}
+.leader-board h2 {
+  margin-bottom: 10px;
+}
+.leader-board .member-info {
+  border: 2px solid #2196f3;
+  background-color: #f6f6f6;
+  padding: 20px;
+  font-size: 20px;
+  -o-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  border-radius: 6px;
+}
+.leader-board .member-info .member {
+  display: flex;
+  justify-content: space-between;
+}
+/* end the score leaders  */
+
+/* start the end screen */
+.end-game {
+  visibility: hidden;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(3, 169, 244, 0.9);
+}
+.end-game span {
+  left: 50%;
+  top: 50%;
+  color: #fff;
+  background-color: #f44336;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 30px;
+  -o-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  border-radius: 6px;
+}
+/* end the end screen */
+
+/* start responsive */
+@media (max-width: 992px) {
+  .info-container {
+    width: 940px;
+    padding: 10px;
+  }
+  .blocks-container {
+    width: 960px;
+    padding: 10px;
+  }
+  .leader-board {
+    width: 960px;
+    padding: 10px;
+  }
+}
+
+/* end responsive */
